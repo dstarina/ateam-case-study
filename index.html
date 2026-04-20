@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI-Powered Enterprise Legacy Modernization Pipeline — Case Study</title>
+<style>
+  :root {
+    --bg: #0b0d12;
+    --bg-elevated: #14171f;
+    --bg-card: #1a1e28;
+    --border: #2a3040;
+    --accent: #6ee7b7;
+    --accent-dim: rgba(110, 231, 183, 0.15);
+    --accent-glow: rgba(110, 231, 183, 0.35);
+    --blue: #60a5fa;
+    --blue-dim: rgba(96, 165, 250, 0.15);
+    --purple: #c084fc;
+    --amber: #fbbf24;
+    --text: #e8eaf0;
+    --text-muted: #9ca3af;
+    --text-dim: #6b7280;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: #06080d;
+    color: var(--text);
+    font-family: -apple-system, 'SF Pro Display', 'Inter', system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    padding: 32px 16px;
+    min-height: 100vh;
+  }
+
+  .page {
+    max-width: 820px;
+    margin: 0 auto 32px auto;
+    padding: 48px 56px;
+    position: relative;
+    background:
+      radial-gradient(ellipse at top right, rgba(110, 231, 183, 0.06) 0%, transparent 45%),
+      radial-gradient(ellipse at bottom left, rgba(96, 165, 250, 0.05) 0%, transparent 45%),
+      var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(110, 231, 183, 0.04);
+  }
+
+  /* --- Page header --- */
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 28px;
+  }
+  .page-header .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .page-header .brand .dot {
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent-glow);
+  }
+  .page-header .page-num {
+    font-size: 11px;
+    color: var(--text-dim);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.5px;
+  }
+
+  /* --- Typography --- */
+  h1 {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.8px;
+    line-height: 1.1;
+    background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 12px;
+  }
+  h2 {
+    font-size: 20px;
+    font-weight: 650;
+    color: var(--text);
+    margin: 28px 0 12px 0;
+    letter-spacing: -0.3px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  h2::before {
+    content: '';
+    width: 4px;
+    height: 20px;
+    background: linear-gradient(180deg, var(--accent), var(--blue));
+    border-radius: 2px;
+  }
+  h3 {
+    font-weight: 600;
+    color: var(--accent);
+    margin: 16px 0 8px 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 11px;
+  }
+  p { margin-bottom: 12px; color: var(--text); font-size: 14px; }
+  strong { color: #fff; font-weight: 600; }
+  em { color: var(--accent); font-style: normal; }
+
+  .subtitle {
+    font-size: 16px;
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-bottom: 28px;
+    letter-spacing: 0.1px;
+    line-height: 1.5;
+  }
+
+  /* --- Hero section (page 1) --- */
+  .hero {
+    margin: 16px 0 28px 0;
+  }
+  .hero-label {
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--accent-dim);
+    border: 1px solid var(--accent);
+    border-radius: 20px;
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  /* --- Cards / sections --- */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin: 16px 0;
+  }
+  .card.highlight {
+    border-color: var(--accent);
+    background: linear-gradient(135deg, var(--accent-dim) 0%, var(--bg-card) 60%);
+  }
+  .card-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  /* --- Metrics grid --- */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 20px 0;
+  }
+  .metric {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 14px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .metric::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--blue));
+  }
+  .metric .value {
+    font-size: 36px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -1px;
+  }
+  .metric .value .unit {
+    font-size: 18px;
+    color: var(--accent);
+    margin-left: 2px;
+  }
+  .metric .label {
+    font-size: 10px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-top: 8px;
+    line-height: 1.3;
+  }
+
+  /* --- Lists --- */
+  ul { list-style: none; padding: 0; margin: 8px 0; }
+  ul li {
+    padding: 6px 0 6px 22px;
+    position: relative;
+    font-size: 13.5px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  ul li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 12px;
+    top: 7px;
+  }
+  ul.tight li { padding: 4px 0 4px 22px; }
+
+  /* --- Two-column layouts --- */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 14px 0;
+  }
+  .three-col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 14px 0;
+  }
+
+  /* --- Tech stack table --- */
+  .tech-stack {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 13px;
+  }
+  .tech-stack td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .tech-stack td:first-child {
+    color: var(--text-muted);
+    width: 30%;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    font-weight: 600;
+  }
+  .tech-stack td:last-child { color: #fff; }
+
+  /* --- Image block --- */
+  .image-block {
+    margin: 18px 0;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px;
+    position: relative;
+  }
+  .image-block img {
+    width: 100%;
+    display: block;
+    border-radius: 4px;
+  }
+  .image-caption {
+    font-size: 11px;
+    color: var(--text-dim);
+    text-align: center;
+    margin-top: 8px;
+    font-style: italic;
+    letter-spacing: 0.3px;
+  }
+
+  /* --- Code / PL/SQL comparison --- */
+  .code-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 16px 0;
+    font-family: 'SF Mono', 'Menlo', monospace;
+    font-size: 11.5px;
+  }
+  .code-compare pre {
+    background: #05070b;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px;
+    overflow-x: auto;
+    color: #d4d4d4;
+    line-height: 1.5;
+    white-space: pre;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .code-compare > div { min-width: 0; }
+  .code-compare .label {
+    font-size: 10px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 6px;
+    font-family: -apple-system, sans-serif;
+    font-weight: 600;
+  }
+  .kw { color: #c084fc; }
+  .str { color: #6ee7b7; }
+  .com { color: #6b7280; font-style: italic; }
+  .fn { color: #60a5fa; }
+  .typ { color: #fbbf24; }
+
+  /* --- Feature callouts --- */
+  .callout-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 14px 0;
+  }
+  .callout {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px;
+    font-size: 12.5px;
+  }
+  .callout .icon {
+    font-size: 18px;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .callout .title {
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 12px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .callout .body {
+    color: var(--text-muted);
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  /* --- Footer --- */
+  .page-footer {
+    margin-top: 36px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--text-dim);
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .page-footer .author { color: var(--text-muted); flex: 1; min-width: 0; }
+  .page-footer .contact { color: var(--accent); flex-shrink: 0; }
+
+  /* --- Pillars / principles --- */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 18px 0;
+  }
+  .pillar {
+    background: linear-gradient(145deg, var(--bg-card) 0%, rgba(26, 30, 40, 0.5) 100%);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 6px;
+    padding: 14px;
+  }
+  .pillar-num {
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 1.2px;
+  }
+  .pillar-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    margin: 6px 0 8px 0;
+    line-height: 1.3;
+  }
+  .pillar-body {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+
+  /* --- Framework layers --- */
+  .layer-stack { margin: 14px 0; }
+  .layer {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    font-size: 13px;
+  }
+  .layer.ai { border-left-color: var(--purple); }
+  .layer.validation { border-left-color: var(--amber); }
+  .layer .stage {
+    font-size: 10.5px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+  .layer .desc {
+    color: var(--text);
+    margin-top: 6px;
+    line-height: 1.55;
+  }
+
+  /* --- Mirror test diagram --- */
+  .mirror-diagram {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 22px;
+    margin: 18px 0;
+    position: relative;
+  }
+  .mirror-flow {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 18px;
+  }
+  .mirror-node {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+  }
+  .mirror-node.legacy { border-color: var(--amber); }
+  .mirror-node.modern { border-color: var(--accent); }
+  .mirror-node .title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+  }
+  .mirror-node .agent {
+    font-size: 11.5px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+  .mirror-arrow {
+    color: var(--accent);
+    font-size: 28px;
+    line-height: 1;
+  }
+  .mirror-bottom {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text);
+  }
+  .mirror-bottom strong { color: var(--accent); }
+
+  /* --- Signature --- */
+  .signature-block {
+    margin-top: 28px;
+    padding: 22px;
+    background: linear-gradient(135deg, var(--accent-dim) 0%, transparent 70%);
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+  }
+  .signature-name {
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+    letter-spacing: -0.3px;
+  }
+  .signature-role {
+    font-size: 13px;
+    color: var(--accent);
+    margin-bottom: 12px;
+    letter-spacing: 0.2px;
+  }
+  .signature-contact {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* --- Highlight line --- */
+  .highlight-line {
+    background: var(--accent-dim);
+    border-left: 3px solid var(--accent);
+    padding: 14px 18px;
+    margin: 16px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 14px;
+    color: var(--text);
+    font-style: italic;
+    line-height: 1.55;
+  }
+  .highlight-line strong { color: var(--accent); font-style: normal; font-weight: 600; }
+
+  /* --- Mobile --- */
+  @media (max-width: 720px) {
+    body { padding: 12px 8px; }
+    .page { padding: 28px 22px; }
+    h1 { font-size: 28px; }
+    .metrics, .pillars, .callout-grid, .code-compare, .two-col { grid-template-columns: 1fr; }
+    .mirror-flow { grid-template-columns: 1fr; }
+    .mirror-arrow { transform: rotate(90deg); }
+  }
+
+  /* --- Print / PDF: fixed A4 sheets --- */
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  @media print {
+    html, body {
+      background: #06080d !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    body {
+      padding: 0 !important;
+      margin: 0 !important;
+      background: #06080d !important;
+    }
+    .page {
+      max-width: none !important;
+      width: 210mm !important;
+      height: 297mm !important;
+      min-height: 297mm !important;
+      max-height: 297mm !important;
+      margin: 0 !important;
+      padding: 14mm 16mm !important;
+      border: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      overflow: hidden !important;
+      page-break-after: always;
+      break-after: page;
+      page-break-inside: avoid;
+      background:
+        radial-gradient(ellipse at top right, rgba(110, 231, 183, 0.06) 0%, transparent 45%),
+        radial-gradient(ellipse at bottom left, rgba(96, 165, 250, 0.05) 0%, transparent 45%),
+        #06080d !important;
+      display: flex !important;
+      flex-direction: column !important;
+    }
+    .page:last-of-type {
+      page-break-after: auto;
+      break-after: auto;
+    }
+    .page-content {
+      flex: 1 1 auto !important;
+      overflow: hidden !important;
+    }
+    .page-footer {
+      margin-top: auto !important;
+    }
+    /* Fix gradient-text rendering in print (Chrome headless bug) */
+    h1 {
+      background: none !important;
+      -webkit-background-clip: unset !important;
+      background-clip: unset !important;
+      color: #fff !important;
+    }
+    /* Force code blocks to wrap instead of clip in print */
+    .code-compare {
+      font-size: 10px !important;
+    }
+    .code-compare pre {
+      white-space: pre-wrap !important;
+      word-break: break-word !important;
+      overflow-x: hidden !important;
+      padding: 10px !important;
+      line-height: 1.45 !important;
+      font-size: 10px !important;
+    }
+    a { color: inherit; text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== SHEET 1 — Hero + Problem + Solution ==================== -->
+<div class="page">
+  <div class="page-header">
+    <div class="brand">
+      <span class="dot"></span>
+      <span>David Starina · Independent Principal AI &amp; Solutions Architect · Case Study</span>
+    </div>
+    <div class="page-num">01 / 07</div>
+  </div>
+
+  <div class="page-content">
+    <div class="hero">
+      <span class="hero-label">Enterprise Legacy Modernization</span>
+      <h1>AI-Powered Legacy<br>Modernization Pipeline</h1>
+      <p class="subtitle">Migrating 4,000+ Oracle Forms to Java EE with a hybrid deterministic + LLM architecture — zero compile errors, governance-first design, autonomous regression-testing framework.</p>
+    </div>
+
+    <h2>The Problem</h2>
+    <p>A mid-sized enterprise client operates a critical business ecosystem built on <strong>4,000+ Oracle Forms</strong> — a technology sunsetted by Oracle and increasingly impossible to staff. Manual rewrite estimates exceed <strong>200,000 engineer-hours</strong> (~100 person-years), with the dominant risk being silent loss of business logic embedded in decades of PL/SQL triggers. The client's requirement was unambiguous: full ownership of the migration process, zero vendor dependency, and deep adaptability to their proprietary Java framework (IRC) — meaning the tooling had to be built from scratch, purpose-fit for their stack.</p>
+    <p>The client needed proof that AI-assisted migration could deliver <em>functional parity at scale</em> — not just compilable code.</p>
+
+    <h2>The Solution</h2>
+    <p>I architected and delivered an <strong>11-stage hybrid AI pipeline</strong> that ingests Oracle Forms XML exports and produces deployable Java EE artifacts — entities, EJBs, JSF views, message bundles, deployment packages — without human intervention in the code generation path.</p>
+    <div class="highlight-line">
+      <strong>Architectural thesis:</strong> use deterministic tooling where the problem is deterministic, and LLMs <em>only</em> where human judgment is genuinely required. Structure and scaffolding via parsers and Jinja2. The Claude API reserved for the irreducibly hard problem: translating PL/SQL business logic into idiomatic Java against a client-specific framework.
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="author">David Starina · Independent Principal AI &amp; Solutions Architect · s.p.</span>
+    <span class="contact">david@starina.si</span>
+  </div>
+</div>
+
+<!-- ==================== SHEET 2 — Impact & Metrics + Why This Matters ==================== -->
+<div class="page">
+  <div class="page-header">
+    <div class="brand">
+      <span class="dot"></span>
+      <span>Impact &amp; Key Metrics</span>
+    </div>
+    <div class="page-num">02 / 07</div>
+  </div>
+
+  <div class="page-content">
+    <h2>Impact &amp; Metrics</h2>
+    <div class="metrics">
+      <div class="metric">
+        <div class="value">95<span class="unit">%</span></div>
+        <div class="label">Process automation<br>XML → deployable ZIP</div>
+      </div>
+      <div class="metric">
+        <div class="value">100<span class="unit">%</span></div>
+        <div class="label">Trigger translation success<br>102 / 102 pilot triggers</div>
+      </div>
+      <div class="metric">
+        <div class="value">0</div>
+        <div class="label">Post-migration<br>compilation errors</div>
+      </div>
+      <div class="metric">
+        <div class="value">≤10<span class="unit">min</span></div>
+        <div class="label">Per-form generation time<br>parallel trigger processing</div>
+      </div>
+      <div class="metric">
+        <div class="value">3</div>
+        <div class="label">Forms validated<br>generic pipeline confirmed</div>
+      </div>
+      <div class="metric">
+        <div class="value">95<span class="unit">%</span></div>
+        <div class="label">End-to-end time savings<br>generation + integration + validation</div>
+      </div>
+    </div>
+
+    <div class="card highlight" style="margin-top: 20px;">
+      <div class="card-title">Why this matters</div>
+      <p style="margin: 0; font-size: 14px;">A 4,000-form migration is not a coding problem. It is a <strong>risk management problem</strong>. The architectural challenge is building a system where the 4,000th form costs less than the 1st, every migration produces evidence, and failures are loud, localized, and cheap to fix.</p>
+    </div>
+
+    <div class="image-block" style="margin-top: 20px;">
+      <img src="pipeline_architecture_diagram_cropped.png" alt="11-stage pipeline architecture">
+      <div class="image-caption">11-stage pipeline: metadata extraction → AI transformation → deterministic auto-fix → verification → deployment</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="author">David Starina · Independent Principal AI &amp; Solutions Architect · s.p.</span>
+    <span class="contact">david@starina.si</span>
+  </div>
+</div>
+
+<!-- ==================== SHEET 3 — Architectural Strategy ==================== -->
+<div class="page">
+  <div class="page-header">
+    <div class="brand">
+      <span class="dot"></span>
+      <span>Architectural Strategy &amp; Tech Stack</span>
+    </div>
+    <div class="page-num">03 / 07</div>
+  </div>
+
+  <div class="page-content">
+    <h1 style="font-size: 30px;">Architectural Strategy</h1>
+    <p class="subtitle">Deterministic where possible, AI where necessary — the discipline that separates demos from production systems.</p>
+
+    <h2>Design Principle</h2>
+    <p>The core decision was to refuse the temptation of "one big LLM prompt." Large-context generation is cheap to demo and catastrophic to operate — it hallucinates class names, invents framework APIs, and produces plausible-looking code that fails at runtime. The pipeline is split along a sharp boundary:</p>
+
+    <div class="layer-stack">
+      <div class="layer">
+        <div class="stage">Deterministic Layer · Stages 1–2, 4, 8–10</div>
+        <div class="desc">XML metadata extraction · entity schema inference (PK/FK heuristics) · PL/SQL library inventory (30 libraries, 1,975 functions) · registry generation · template-driven assembly (Jinja2, 18 templates) · XHTML generation · deployment packaging.</div>
+      </div>
+      <div class="layer ai">
+        <div class="stage">AI Layer · Stage 3</div>
+        <div class="desc">Claude API receives <strong>per-method prompts</strong> — never whole forms. Each prompt carries exactly the context needed: trigger body, target framework patterns, entity schema, method signature. Parallel execution for throughput. Typed output: method body only, not full class.</div>
+      </div>
+      <div class="layer validation">
+        <div class="stage">Validation Layer · Stages 5–7</div>
+        <div class="desc">Gap analysis against a capability registry (what the pipeline <em>knows</em> it handles) · deep validation with 12 categories of deterministic auto-fix · Maven compile as a hard gate — 0 errors required to proceed to packaging.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span class="author">David Starina · Independent Principal AI &amp; Solutions Architect · s.p.</span>
+    <span class="contact">david@starina.si</span>
+  </div>
+</div>
+
+<!-- ==================== SHEET 4 — Tech Stack + Code Comprehension ==================== -->
+<div class="page">
+  <div class="page-header">
+    <div class="brand">
+      <span class="dot"></span>
+      <span>Deep Code Comprehension &amp; Human-in-the-Loop</span>
+    </div>
+    <div class="page-num">04 / 07</div>
+  </div>
+
+  <div class="page-content">
+    <h2 style="margin-top: 0;">Tech Stack</h2>
+    <table class="tech-stack">
+      <tr><td>Orchestration</td><td>Python 3.12 · Bash · async/parallel execution</td></tr>
+      <tr><td>AI</td><td>Claude API (Sonnet &amp; Opus) · structured prompt engineering · parallel request management</td></tr>
+      <tr><td>Templating</td><td>Jinja2 — 18 templates across Java EE and XHTML</td></tr>
+      <tr><td>Target Runtime</td><td>Java EE 8 · JSF · PrimeFaces · WildFly</td></tr>
+      <tr><td>Persistence</td><td>JPA / EJB — @Stateless, @Named, @ViewScoped</td></tr>
+      <tr><td>Verification</td><td>Maven compile gate · custom validation engine · 12-category auto-fix</td></tr>
+      <tr><td>Governance</td><td>Streamlit internal dashboard · capability registry</td></tr>
+      <tr><td>Regression Testing</td><td>Playwright · <strong style="color: var(--accent);">Claude Computer Use API</strong> · DB snapshot comparator</td></tr>
+    </table>
+
+    <h1 style="font-size: 26px; margin-top: 22px;">Code Comprehension</h1>
+    <p class="subtitle">How the pipeline handles decades-old PL/SQL with global state, runtime APIs, and undocumented business rules.</p>
+
+    <div class="code-compare">
+    <div>
+      <div class="label">Legacy · PL/SQL Trigger (WHEN-VALIDATE-ITEM)</div>
+<pre><span class="com">-- Validate journal period against global fiscal state</span>
+<span class="kw">DECLARE</span>
+  v_period  <span class="typ">VARCHAR2</span>(7);
+  v_status  <span class="typ">NUMBER</span>;
+<span class="kw">BEGIN</span>
+  v_period := <span class="fn">NAME_IN</span>(<span class="str">':TEMELJNICA.OBRACUN'</span>);
+  <span class="kw">IF</span> v_period &lt; :<span class="typ">GLOBAL</span>.TRENUTNI_MESEC <span class="kw">THEN</span>
+    <span class="fn">BELL</span>;
+    <span class="fn">MESSAGE</span>(<span class="str">'Zaprto obdobje'</span>);
+    <span class="fn">RAISE</span> FORM_TRIGGER_FAILURE;
+  <span class="kw">END IF</span>;
+  <span class="fn">COPY</span>(v_period, <span class="str">':TEMELJNICA.OBR_VAL'</span>);
+<span class="kw">END</span>;</pre>
+    </div>
+    <div>
+      <div class="label">Generated · Java EE / JSF</div>
+<pre><span class="com">// Stage 3 output, Stage 6 auto-fixed, Stage 7 verified</span>
+<span class="kw">public void</span> <span class="fn">whenValidateItemObracun</span>() {
+  <span class="typ">String</span> period = temeljnica.<span class="fn">getObracun</span>();
+  <span class="typ">String</span> currentMonth = sejnoZrno
+    .<span class="fn">vrniParameter</span>(<span class="str">"TRENUTNI_MESEC"</span>);
+
+  <span class="kw">if</span> (period.<span class="fn">compareTo</span>(currentMonth) &lt; 0) {
+    <span class="fn">addMessage</span>(FacesMessage.SEVERITY_ERROR,
+      messages.<span class="fn">getString</span>(<span class="str">"zaprto_obdobje"</span>));
+    <span class="kw">throw new</span> ValidationException();
+  }
+  temeljnica.<span class="fn">setObrVal</span>(period);
+}</pre>
+      </div>
+    </div>
+
+    <p style="margin-top: 18px;">The AI doesn't see the whole form. It receives a single trigger body, the target framework's real patterns, the entity schema, and a required method signature. The output is a method body — always — and never a full class. Structure around it is assembled deterministically from templates.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="author">David Starina · Independent Principal AI &amp; Solutions Architect · s.p.</span>
+    <span class="contact">david@starina.si</span>
+  </div>
+</div>
+
+<!-- ==================== SHEET 5 — Handling Messy Legacy Code ==================== -->
+<div class="page">
+  <div class="page-header">
+    <div class="brand">
+      <span class="dot"></span>
+      <span>Handling Messy Legacy Code · Auto-Fix Engine</span>
+    </div>
+    <div class="page-num">05 / 07</div>
+  </div>
+
+  <div class="page-content">
+    <h2>Handling Messy Legacy Code</h2>
+    <p>Oracle Forms PL/SQL is not a clean language to translate. It mixes procedural logic with runtime API calls (<code style="color: var(--accent); font-family: monospace;">NAME_IN</code>, <code style="color: var(--accent); font-family: monospace;">COPY</code>, <code style="color: var(--accent); font-family: monospace;">GET_ITEM_PROPERTY</code>) that read and mutate UI state dynamically, depends on implicit record buffers, and leans on <code style="color: var(--accent); font-family: monospace;">:GLOBAL.*</code> variables for cross-form communication. A naive translator produces code that compiles but silently corrupts state at runtime.</p>
+
+    <div class="pillars">
+    <div class="pillar">
+      <div class="pillar-num">01 / MECHANISM</div>
+      <div class="pillar-title">Semantic Prompt Construction</div>
+      <div class="pillar-body">Each AI prompt includes the target framework's <em>actual</em> patterns — not generic Java. The model sees the real service layer, real entity naming, real lifecycle methods. This collapses the hallucination surface by constraining what "valid output" looks like.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">02 / MECHANISM</div>
+      <div class="pillar-title">12-Category Auto-Fix</div>
+      <div class="pillar-body">The AI makes predictable mistakes. Rather than pray-and-retry, the pipeline catches them: getter hallucinations, EntityManager in wrong tier, CDI leaking into EJBs, wrong entity refs. Each fix is a reviewable, testable transform.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">03 / MECHANISM</div>
+      <div class="pillar-title">Explicit TODO Markers</div>
+      <div class="pillar-body">When the AI encounters logic it cannot confidently translate, it emits a structured TODO with the original PL/SQL preserved. These become a finite, prioritized backlog — not an invisible risk. <strong>AI is an accelerator, not an oracle.</strong></div>
+    </div>
+  </div>
+
+    <h3 style="color: var(--amber); margin-top: 20px;">Auto-Fix categories detected &amp; corrected</h3>
+    <div class="callout-grid">
+      <div class="callout">
+        <div class="title">Getter Hallucination</div>
+        <div class="body">Detects <code style="font-family: monospace;">getIidCustomer()</code> fabrications, maps to inherited <code style="font-family: monospace;">getId()</code> from OsnovniType.</div>
+      </div>
+      <div class="callout">
+        <div class="title">Tier Violation</div>
+        <div class="body">Strips <code style="font-family: monospace;">@PersistenceContext</code> injected into VnosZrno where only FrkSb holds the EntityManager.</div>
+      </div>
+      <div class="callout">
+        <div class="title">Scope Leak</div>
+        <div class="body">Comments out <code style="font-family: monospace;">sejnoZrno</code> references inside <code style="font-family: monospace;">@Stateless</code> EJB — CDI scopes don't cross tier.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="author">David Starina · Independent Principal AI &amp; Solutions Architect · s.p.</span>
+    <span class="contact">david@starina.si</span>
+  </div>
+</div>
+
+<!-- ==================== SHEET 6 — Governance Through Observability ==================== -->
+<div class="page">
+  <div class="page-header">
+    <div class="brand">
+      <span class="dot"></span>
+      <span>Governance · Analytics · Observability</span>
+    </div>
+    <div class="page-num">06 / 07</div>
+  </div>
+
+  <div class="page-content">
+    <h1 style="font-size: 30px;">Governance &amp; Observability</h1>
+    <p class="subtitle">Making AI decisions observable, auditable, and traceable at every layer of the pipeline.</p>
+
+    <div class="image-block">
+      <img src="streamlit_coverage.png" alt="Streamlit coverage dashboard">
+      <div class="image-caption">Streamlit governance console — per-form trigger coverage, capability registry gaps, auto-fix ledger</div>
+    </div>
+
+    <h2>Governance Through Observability</h2>
+    <p>Enterprise migrations fail quietly. A pipeline that reports "success" while silently dropping 10% of business logic is worse than no pipeline — it shifts failure from <em>detectable</em> (compile error) to <em>undetectable</em> (wrong number in a ledger). I refused to ship that. The Streamlit console makes migration state inspectable at every layer:</p>
+
+    <ul class="tight">
+      <li><strong>Trigger coverage matrix</strong> — per-form breakdown by trigger type (PRE-INSERT, POST-QUERY, WHEN-VALIDATE-ITEM, 40+ categories) with drill-down to generated Java</li>
+      <li><strong>Capability registry</strong> — machine-readable contract of what the pipeline <em>claims</em> vs. what it <em>actually encounters</em>. Gap analysis runs this delta on every execution</li>
+      <li><strong>Auto-fix ledger</strong> — which of the 12 deterministic fixes fired, where, and why. No silent rewrites</li>
+      <li><strong>Compile-gate status</strong> — Maven pass/fail per form, error provenance traced back to originating trigger</li>
+    </ul>
+
+    <div class="highlight-line">
+      CTOs don't buy <em>"trust the model."</em> They buy <strong>"show me what it did and why."</strong>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="author">David Starina · Independent Principal AI &amp; Solutions Architect · s.p.</span>
+    <span class="contact">david@starina.si</span>
+  </div>
+</div>
+
+<!-- ==================== SHEET 7 — Mirror Testing + Closing ==================== -->
+<div class="page">
+  <div class="page-header">
+    <div class="brand">
+      <span class="dot"></span>
+      <span>Zero-Regression Testing · Closing</span>
+    </div>
+    <div class="page-num">07 / 07</div>
+  </div>
+
+  <div class="page-content">
+    <h2>The Innovation · Autonomous Mirror Testing Framework</h2>
+    <p>Compilation proves code builds. It does <em>not</em> prove the migrated form behaves identically to the original. With 4,000 forms and decades of undocumented business rules, manual regression testing is mathematically impossible. Writing Selenium scripts for each form is a second migration project.</p>
+    <p>I designed and built a different approach: <strong>use the Claude Computer Use API to autonomously operate the legacy Oracle Forms thick client</strong>, execute business scenarios, and compare against the same scenarios on the migrated JSF web app via Playwright — both runs snapshotting the database before &amp; after. The framework is operational; running it at scale awaits client-supplied test scenarios.</p>
+
+    <div class="mirror-diagram">
+      <div class="mirror-flow">
+        <div class="mirror-node legacy">
+          <div class="title">Legacy Oracle Forms</div>
+          <div class="agent">Claude Computer Use Agent</div>
+        </div>
+        <div class="mirror-arrow">⇌</div>
+        <div class="mirror-node modern">
+          <div class="title">Migrated JSF / PrimeFaces</div>
+          <div class="agent">Playwright Runner</div>
+        </div>
+      </div>
+      <div class="mirror-bottom">
+        DB snapshot comparator · semantic diff · <strong>regression report per scenario</strong>
+      </div>
+    </div>
+
+    <h2>What This Project Demonstrates</h2>
+    <div class="two-col">
+      <ul class="tight">
+        <li><strong>Systems thinking over prompt engineering.</strong> The value is in the boundary between deterministic and probabilistic layers</li>
+        <li><strong>AI governance built in, not bolted on.</strong> Every decision logged, every auto-fix auditable, every gap measured</li>
+      </ul>
+      <ul class="tight">
+        <li><strong>Zero-regression verification framework.</strong> Novel application of Computer Use for legacy regression — designed, built, awaiting scenarios</li>
+        <li><strong>Honest engineering.</strong> The pipeline reports what it <em>doesn't</em> know. The capability registry bounds the unknown</li>
+      </ul>
+    </div>
+
+    <div class="signature-block">
+      <div class="signature-name">David Starina</div>
+      <div class="signature-role">Independent Principal AI &amp; Solutions Architect · Fractional Lead</div>
+      <div class="signature-contact">
+        david@starina.si · +386 51 283 984<br>
+        Available for fractional Lead / Principal AI Architect engagements
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="author">I build AI systems the way production systems should be built — observable, recoverable, honest about their limits.</span>
+    <span class="contact">david@starina.si</span>
+  </div>
+</div>
+
+</body>
+</html>
