@@ -538,107 +538,67 @@
     .mirror-flow { grid-template-columns: 1fr; }
     .mirror-arrow { transform: rotate(90deg); }
   }
-
-  /* --- Print / PDF: fixed A4 sheets --- */
-  @page {
-    size: A4;
-    margin: 0;
-  }
-  @media print {
-    html, body {
-      background: #06080d !important;
-      -webkit-print-color-adjust: exact !important;
-      print-color-adjust: exact !important;
-    }
-    body {
-      padding: 0 !important;
-      margin: 0 !important;
-      background: #06080d !important;
-    }
-    .page {
-      max-width: none !important;
-      width: 210mm !important;
-      height: 297mm !important;
-      min-height: 297mm !important;
-      max-height: 297mm !important;
-      margin: 0 !important;
-      padding: 14mm 16mm !important;
-      border: none !important;
-      border-radius: 0 !important;
-      box-shadow: none !important;
-      overflow: hidden !important;
-      page-break-after: always;
-      break-after: page;
-      page-break-inside: avoid;
-      background:
-        radial-gradient(ellipse at top right, rgba(110, 231, 183, 0.06) 0%, transparent 45%),
-        radial-gradient(ellipse at bottom left, rgba(96, 165, 250, 0.05) 0%, transparent 45%),
-        #06080d !important;
-      display: flex !important;
-      flex-direction: column !important;
-    }
-    .page:last-of-type {
-      page-break-after: auto;
-      break-after: auto;
-    }
-    .page-content {
-      flex: 1 1 auto !important;
-      overflow: hidden !important;
-    }
-    .page-footer {
-      margin-top: auto !important;
-    }
-    /* Fix gradient-text rendering in print (Chrome headless bug) */
-    h1 {
-      background: none !important;
-      -webkit-background-clip: unset !important;
-      background-clip: unset !important;
-      color: #fff !important;
-    }
-    /* Force code blocks to wrap instead of clip in print */
-    .code-compare {
-      font-size: 10px !important;
-    }
-    .code-compare pre {
-      white-space: pre-wrap !important;
-      word-break: break-word !important;
-      overflow-x: hidden !important;
-      padding: 10px !important;
-      line-height: 1.45 !important;
-      font-size: 10px !important;
-    }
-    a { color: inherit; text-decoration: none; }
-  }
 </style>
 </head>
 <body>
 
-<!-- ==================== SHEET 1 — Hero + Problem + Solution ==================== -->
+<!-- ==================== PAGE 1 ==================== -->
 <div class="page">
   <div class="page-header">
     <div class="brand">
       <span class="dot"></span>
-      <span>David Starina · Independent Principal AI &amp; Solutions Architect · Case Study</span>
+      <span>David Starina · Principal AI Architect · Case Study</span>
     </div>
-    <div class="page-num">01 / 07</div>
+    <div class="page-num">01 / 04</div>
   </div>
 
-  <div class="page-content">
-    <div class="hero">
-      <span class="hero-label">Enterprise Legacy Modernization</span>
-      <h1>AI-Powered Legacy<br>Modernization Pipeline</h1>
-      <p class="subtitle">Migrating 4,000+ Oracle Forms to Java EE with a hybrid deterministic + LLM architecture — zero compile errors, governance-first design, autonomous regression-testing framework.</p>
-    </div>
+  <div class="hero">
+    <span class="hero-label">Enterprise Legacy Modernization</span>
+    <h1>AI-Powered Legacy<br>Modernization Pipeline</h1>
+    <p class="subtitle">Migrating 4,000+ Oracle Forms to Java EE with a hybrid deterministic + LLM architecture — zero compile errors, governance-first design, autonomous regression-testing framework.</p>
+  </div>
 
-    <h2>The Problem</h2>
-    <p>A mid-sized enterprise client operates a critical business ecosystem built on <strong>4,000+ Oracle Forms</strong> — a technology sunsetted by Oracle and increasingly impossible to staff. Manual rewrite estimates exceed <strong>200,000 engineer-hours</strong> (~100 person-years), with the dominant risk being silent loss of business logic embedded in decades of PL/SQL triggers. The client's requirement was unambiguous: full ownership of the migration process, zero vendor dependency, and deep adaptability to their proprietary Java framework (IRC) — meaning the tooling had to be built from scratch, purpose-fit for their stack.</p>
-    <p>The client needed proof that AI-assisted migration could deliver <em>functional parity at scale</em> — not just compilable code.</p>
+  <h2>The Problem</h2>
+  <p>A mid-sized enterprise client operates a critical business ecosystem built on <strong>4,000+ Oracle Forms</strong> — a technology sunsetted by Oracle and increasingly impossible to staff. Manual rewrite estimates exceed <strong>200,000 engineer-hours</strong> (~100 person-years), with the dominant risk being silent loss of business logic embedded in decades of PL/SQL triggers. The client's requirement was unambiguous: full ownership of the migration process, zero vendor dependency, and deep adaptability to their proprietary Java framework (IRC) — meaning the tooling had to be built from scratch, purpose-fit for their stack.</p>
+  <p>The client needed proof that AI-assisted migration could deliver <em>functional parity at scale</em> — not just compilable code.</p>
 
-    <h2>The Solution</h2>
-    <p>I architected and delivered an <strong>11-stage hybrid AI pipeline</strong> that ingests Oracle Forms XML exports and produces deployable Java EE artifacts — entities, EJBs, JSF views, message bundles, deployment packages — without human intervention in the code generation path.</p>
-    <div class="highlight-line">
-      <strong>Architectural thesis:</strong> use deterministic tooling where the problem is deterministic, and LLMs <em>only</em> where human judgment is genuinely required. Structure and scaffolding via parsers and Jinja2. The Claude API reserved for the irreducibly hard problem: translating PL/SQL business logic into idiomatic Java against a client-specific framework.
+  <h2>The Solution</h2>
+  <p>I architected and delivered an <strong>11-stage hybrid AI pipeline</strong> that ingests Oracle Forms XML exports and produces deployable Java EE artifacts — entities, EJBs, JSF views, message bundles, deployment packages — without human intervention in the code generation path.</p>
+  <div class="highlight-line">
+    <strong>Architectural thesis:</strong> use deterministic tooling where the problem is deterministic, and LLMs <em>only</em> where human judgment is genuinely required. Structure and scaffolding via parsers and Jinja2. The Claude API reserved for the irreducibly hard problem: translating PL/SQL business logic into idiomatic Java against a client-specific framework.
+  </div>
+
+  <h2>Impact &amp; Metrics</h2>
+  <div class="metrics">
+    <div class="metric">
+      <div class="value">95<span class="unit">%</span></div>
+      <div class="label">Process automation<br>XML → deployable ZIP</div>
     </div>
+    <div class="metric">
+      <div class="value">100<span class="unit">%</span></div>
+      <div class="label">Trigger translation success<br>102 / 102 pilot triggers</div>
+    </div>
+    <div class="metric">
+      <div class="value">0</div>
+      <div class="label">Post-migration<br>compilation errors</div>
+    </div>
+    <div class="metric">
+      <div class="value">≤10<span class="unit">min</span></div>
+      <div class="label">Per-form generation time<br>parallel trigger processing</div>
+    </div>
+    <div class="metric">
+      <div class="value">3</div>
+      <div class="label">Forms validated<br>generic pipeline confirmed</div>
+    </div>
+    <div class="metric">
+      <div class="value">95<span class="unit">%</span></div>
+      <div class="label">End-to-end time savings<br>generation + integration + validation</div>
+    </div>
+  </div>
+
+  <div class="card highlight">
+    <div class="card-title">Why this matters</div>
+    <p style="margin: 0; font-size: 14px;">A 4,000-form migration is not a coding problem. It is a <strong>risk management problem</strong>. The architectural challenge is building a system where the 4,000th form costs less than the 1st, every migration produces evidence, and failures are loud, localized, and cheap to fix.</p>
   </div>
 
   <div class="page-footer">
@@ -647,95 +607,53 @@
   </div>
 </div>
 
-<!-- ==================== SHEET 2 — Impact & Metrics + Why This Matters ==================== -->
-<div class="page">
-  <div class="page-header">
-    <div class="brand">
-      <span class="dot"></span>
-      <span>Impact &amp; Key Metrics</span>
-    </div>
-    <div class="page-num">02 / 07</div>
-  </div>
-
-  <div class="page-content">
-    <h2>Impact &amp; Metrics</h2>
-    <div class="metrics">
-      <div class="metric">
-        <div class="value">95<span class="unit">%</span></div>
-        <div class="label">Process automation<br>XML → deployable ZIP</div>
-      </div>
-      <div class="metric">
-        <div class="value">100<span class="unit">%</span></div>
-        <div class="label">Trigger translation success<br>102 / 102 pilot triggers</div>
-      </div>
-      <div class="metric">
-        <div class="value">0</div>
-        <div class="label">Post-migration<br>compilation errors</div>
-      </div>
-      <div class="metric">
-        <div class="value">≤10<span class="unit">min</span></div>
-        <div class="label">Per-form generation time<br>parallel trigger processing</div>
-      </div>
-      <div class="metric">
-        <div class="value">3</div>
-        <div class="label">Forms validated<br>generic pipeline confirmed</div>
-      </div>
-      <div class="metric">
-        <div class="value">95<span class="unit">%</span></div>
-        <div class="label">End-to-end time savings<br>generation + integration + validation</div>
-      </div>
-    </div>
-
-    <div class="card highlight" style="margin-top: 20px;">
-      <div class="card-title">Why this matters</div>
-      <p style="margin: 0; font-size: 14px;">A 4,000-form migration is not a coding problem. It is a <strong>risk management problem</strong>. The architectural challenge is building a system where the 4,000th form costs less than the 1st, every migration produces evidence, and failures are loud, localized, and cheap to fix.</p>
-    </div>
-
-    <div class="image-block" style="margin-top: 20px;">
-      <img src="pipeline_architecture_diagram_cropped.png" alt="11-stage pipeline architecture">
-      <div class="image-caption">11-stage pipeline: metadata extraction → AI transformation → deterministic auto-fix → verification → deployment</div>
-    </div>
-  </div>
-
-  <div class="page-footer">
-    <span class="author">David Starina · Independent Principal AI &amp; Solutions Architect · s.p.</span>
-    <span class="contact">david@starina.si</span>
-  </div>
-</div>
-
-<!-- ==================== SHEET 3 — Architectural Strategy ==================== -->
+<!-- ==================== PAGE 2 ==================== -->
 <div class="page">
   <div class="page-header">
     <div class="brand">
       <span class="dot"></span>
       <span>Architectural Strategy &amp; Tech Stack</span>
     </div>
-    <div class="page-num">03 / 07</div>
+    <div class="page-num">02 / 04</div>
   </div>
 
-  <div class="page-content">
-    <h1 style="font-size: 30px;">Architectural Strategy</h1>
-    <p class="subtitle">Deterministic where possible, AI where necessary — the discipline that separates demos from production systems.</p>
+  <h1 style="font-size: 30px;">Architectural Strategy</h1>
+  <p class="subtitle">Deterministic where possible, AI where necessary — the discipline that separates demos from production systems.</p>
 
-    <h2>Design Principle</h2>
-    <p>The core decision was to refuse the temptation of "one big LLM prompt." Large-context generation is cheap to demo and catastrophic to operate — it hallucinates class names, invents framework APIs, and produces plausible-looking code that fails at runtime. The pipeline is split along a sharp boundary:</p>
+  <div class="image-block">
+    <img src="pipeline_architecture_diagram.png" alt="11-stage pipeline architecture">
+    <div class="image-caption">11-stage pipeline: metadata extraction → AI transformation → deterministic auto-fix → verification → deployment</div>
+  </div>
 
-    <div class="layer-stack">
-      <div class="layer">
-        <div class="stage">Deterministic Layer · Stages 1–2, 4, 8–10</div>
-        <div class="desc">XML metadata extraction · entity schema inference (PK/FK heuristics) · PL/SQL library inventory (30 libraries, 1,975 functions) · registry generation · template-driven assembly (Jinja2, 18 templates) · XHTML generation · deployment packaging.</div>
-      </div>
-      <div class="layer ai">
-        <div class="stage">AI Layer · Stage 3</div>
-        <div class="desc">Claude API receives <strong>per-method prompts</strong> — never whole forms. Each prompt carries exactly the context needed: trigger body, target framework patterns, entity schema, method signature. Parallel execution for throughput. Typed output: method body only, not full class.</div>
-      </div>
-      <div class="layer validation">
-        <div class="stage">Validation Layer · Stages 5–7</div>
-        <div class="desc">Gap analysis against a capability registry (what the pipeline <em>knows</em> it handles) · deep validation with 12 categories of deterministic auto-fix · Maven compile as a hard gate — 0 errors required to proceed to packaging.</div>
-      </div>
+  <h2>Design Principle</h2>
+  <p>The core decision was to refuse the temptation of "one big LLM prompt." Large-context generation is cheap to demo and catastrophic to operate — it hallucinates class names, invents framework APIs, and produces plausible-looking code that fails at runtime. The pipeline is split along a sharp boundary:</p>
+
+  <div class="layer-stack">
+    <div class="layer">
+      <div class="stage">Deterministic Layer · Stages 1–2, 4, 8–10</div>
+      <div class="desc">XML metadata extraction · entity schema inference (PK/FK heuristics) · PL/SQL library inventory (30 libraries, 1,975 functions) · registry generation · template-driven assembly (Jinja2, 18 templates) · XHTML generation · deployment packaging.</div>
     </div>
-
+    <div class="layer ai">
+      <div class="stage">AI Layer · Stage 3</div>
+      <div class="desc">Claude API receives <strong>per-method prompts</strong> — never whole forms. Each prompt carries exactly the context needed: trigger body, target framework patterns, entity schema, method signature. Parallel execution for throughput. Typed output: method body only, not full class.</div>
+    </div>
+    <div class="layer validation">
+      <div class="stage">Validation Layer · Stages 5–7</div>
+      <div class="desc">Gap analysis against a capability registry (what the pipeline <em>knows</em> it handles) · deep validation with 12 categories of deterministic auto-fix · Maven compile as a hard gate — 0 errors required to proceed to packaging.</div>
+    </div>
   </div>
+
+  <h2>Tech Stack</h2>
+  <table class="tech-stack">
+    <tr><td>Orchestration</td><td>Python 3.12 · Bash · async/parallel execution</td></tr>
+    <tr><td>AI</td><td>Claude API (Sonnet &amp; Opus) · structured prompt engineering · parallel request management</td></tr>
+    <tr><td>Templating</td><td>Jinja2 — 18 templates across Java EE and XHTML</td></tr>
+    <tr><td>Target Runtime</td><td>Java EE 8 · JSF · PrimeFaces · WildFly</td></tr>
+    <tr><td>Persistence</td><td>JPA / EJB — @Stateless, @Named, @ViewScoped</td></tr>
+    <tr><td>Verification</td><td>Maven compile gate · custom validation engine · 12-category auto-fix</td></tr>
+    <tr><td>Governance</td><td>Streamlit internal dashboard · capability registry</td></tr>
+    <tr><td>Regression Testing</td><td>Playwright · <strong style="color: var(--accent);">Claude Computer Use API</strong> · DB snapshot comparator</td></tr>
+  </table>
 
   <div class="page-footer">
     <span class="author">David Starina · Independent Principal AI &amp; Solutions Architect · s.p.</span>
@@ -743,33 +661,20 @@
   </div>
 </div>
 
-<!-- ==================== SHEET 4 — Tech Stack + Code Comprehension ==================== -->
+<!-- ==================== PAGE 3 ==================== -->
 <div class="page">
   <div class="page-header">
     <div class="brand">
       <span class="dot"></span>
       <span>Deep Code Comprehension &amp; Human-in-the-Loop</span>
     </div>
-    <div class="page-num">04 / 07</div>
+    <div class="page-num">03 / 04</div>
   </div>
 
-  <div class="page-content">
-    <h2 style="margin-top: 0;">Tech Stack</h2>
-    <table class="tech-stack">
-      <tr><td>Orchestration</td><td>Python 3.12 · Bash · async/parallel execution</td></tr>
-      <tr><td>AI</td><td>Claude API (Sonnet &amp; Opus) · structured prompt engineering · parallel request management</td></tr>
-      <tr><td>Templating</td><td>Jinja2 — 18 templates across Java EE and XHTML</td></tr>
-      <tr><td>Target Runtime</td><td>Java EE 8 · JSF · PrimeFaces · WildFly</td></tr>
-      <tr><td>Persistence</td><td>JPA / EJB — @Stateless, @Named, @ViewScoped</td></tr>
-      <tr><td>Verification</td><td>Maven compile gate · custom validation engine · 12-category auto-fix</td></tr>
-      <tr><td>Governance</td><td>Streamlit internal dashboard · capability registry</td></tr>
-      <tr><td>Regression Testing</td><td>Playwright · <strong style="color: var(--accent);">Claude Computer Use API</strong> · DB snapshot comparator</td></tr>
-    </table>
+  <h1 style="font-size: 30px;">Code Comprehension</h1>
+  <p class="subtitle">How the pipeline handles decades-old PL/SQL with global state, runtime APIs, and undocumented business rules.</p>
 
-    <h1 style="font-size: 26px; margin-top: 22px;">Code Comprehension</h1>
-    <p class="subtitle">How the pipeline handles decades-old PL/SQL with global state, runtime APIs, and undocumented business rules.</p>
-
-    <div class="code-compare">
+  <div class="code-compare">
     <div>
       <div class="label">Legacy · PL/SQL Trigger (WHEN-VALIDATE-ITEM)</div>
 <pre><span class="com">-- Validate journal period against global fiscal state</span>
@@ -801,33 +706,13 @@
   }
   temeljnica.<span class="fn">setObrVal</span>(period);
 }</pre>
-      </div>
     </div>
-
-    <p style="margin-top: 18px;">The AI doesn't see the whole form. It receives a single trigger body, the target framework's real patterns, the entity schema, and a required method signature. The output is a method body — always — and never a full class. Structure around it is assembled deterministically from templates.</p>
   </div>
 
-  <div class="page-footer">
-    <span class="author">David Starina · Independent Principal AI &amp; Solutions Architect · s.p.</span>
-    <span class="contact">david@starina.si</span>
-  </div>
-</div>
+  <h2>Handling Messy Legacy Code</h2>
+  <p>Oracle Forms PL/SQL is not a clean language to translate. It mixes procedural logic with runtime API calls (<code style="color: var(--accent); font-family: monospace;">NAME_IN</code>, <code style="color: var(--accent); font-family: monospace;">COPY</code>, <code style="color: var(--accent); font-family: monospace;">GET_ITEM_PROPERTY</code>) that read and mutate UI state dynamically, depends on implicit record buffers, and leans on <code style="color: var(--accent); font-family: monospace;">:GLOBAL.*</code> variables for cross-form communication. A naive translator produces code that compiles but silently corrupts state at runtime.</p>
 
-<!-- ==================== SHEET 5 — Handling Messy Legacy Code ==================== -->
-<div class="page">
-  <div class="page-header">
-    <div class="brand">
-      <span class="dot"></span>
-      <span>Handling Messy Legacy Code · Auto-Fix Engine</span>
-    </div>
-    <div class="page-num">05 / 07</div>
-  </div>
-
-  <div class="page-content">
-    <h2>Handling Messy Legacy Code</h2>
-    <p>Oracle Forms PL/SQL is not a clean language to translate. It mixes procedural logic with runtime API calls (<code style="color: var(--accent); font-family: monospace;">NAME_IN</code>, <code style="color: var(--accent); font-family: monospace;">COPY</code>, <code style="color: var(--accent); font-family: monospace;">GET_ITEM_PROPERTY</code>) that read and mutate UI state dynamically, depends on implicit record buffers, and leans on <code style="color: var(--accent); font-family: monospace;">:GLOBAL.*</code> variables for cross-form communication. A naive translator produces code that compiles but silently corrupts state at runtime.</p>
-
-    <div class="pillars">
+  <div class="pillars">
     <div class="pillar">
       <div class="pillar-num">01 / MECHANISM</div>
       <div class="pillar-title">Semantic Prompt Construction</div>
@@ -845,20 +730,19 @@
     </div>
   </div>
 
-    <h3 style="color: var(--amber); margin-top: 20px;">Auto-Fix categories detected &amp; corrected</h3>
-    <div class="callout-grid">
-      <div class="callout">
-        <div class="title">Getter Hallucination</div>
-        <div class="body">Detects <code style="font-family: monospace;">getIidCustomer()</code> fabrications, maps to inherited <code style="font-family: monospace;">getId()</code> from OsnovniType.</div>
-      </div>
-      <div class="callout">
-        <div class="title">Tier Violation</div>
-        <div class="body">Strips <code style="font-family: monospace;">@PersistenceContext</code> injected into VnosZrno where only FrkSb holds the EntityManager.</div>
-      </div>
-      <div class="callout">
-        <div class="title">Scope Leak</div>
-        <div class="body">Comments out <code style="font-family: monospace;">sejnoZrno</code> references inside <code style="font-family: monospace;">@Stateless</code> EJB — CDI scopes don't cross tier.</div>
-      </div>
+  <h3 style="color: var(--amber);">Auto-Fix categories detected &amp; corrected</h3>
+  <div class="callout-grid">
+    <div class="callout">
+      <div class="title">Getter Hallucination</div>
+      <div class="body">Detects <code style="font-family: monospace;">getIidCustomer()</code> fabrications, maps to inherited <code style="font-family: monospace;">getId()</code> from OsnovniType.</div>
+    </div>
+    <div class="callout">
+      <div class="title">Tier Violation</div>
+      <div class="body">Strips <code style="font-family: monospace;">@PersistenceContext</code> injected into VnosZrno where only FrkSb holds the EntityManager.</div>
+    </div>
+    <div class="callout">
+      <div class="title">Scope Leak</div>
+      <div class="body">Comments out <code style="font-family: monospace;">sejnoZrno</code> references inside <code style="font-family: monospace;">@Stateless</code> EJB — CDI scopes don't cross tier.</div>
     </div>
   </div>
 
@@ -868,97 +752,77 @@
   </div>
 </div>
 
-<!-- ==================== SHEET 6 — Governance Through Observability ==================== -->
+<!-- ==================== PAGE 4 ==================== -->
 <div class="page">
   <div class="page-header">
     <div class="brand">
       <span class="dot"></span>
-      <span>Governance · Analytics · Observability</span>
+      <span>Governance · Analytics · Zero-Regression Testing</span>
     </div>
-    <div class="page-num">06 / 07</div>
+    <div class="page-num">04 / 04</div>
   </div>
 
-  <div class="page-content">
-    <h1 style="font-size: 30px;">Governance &amp; Observability</h1>
-    <p class="subtitle">Making AI decisions observable, auditable, and traceable at every layer of the pipeline.</p>
+  <h1 style="font-size: 30px;">Governance &amp; Mirror Testing</h1>
+  <p class="subtitle">Making AI decisions observable, auditable, and autonomously verifiable against the legacy system.</p>
 
-    <div class="image-block">
-      <img src="streamlit_coverage.png" alt="Streamlit coverage dashboard">
-      <div class="image-caption">Streamlit governance console — per-form trigger coverage, capability registry gaps, auto-fix ledger</div>
+  <div class="image-block">
+    <img src="streamlit_coverage.png" alt="Streamlit coverage dashboard">
+    <div class="image-caption">Streamlit governance console — per-form trigger coverage, capability registry gaps, auto-fix ledger</div>
+  </div>
+
+  <h2>Governance Through Observability</h2>
+  <p>Enterprise migrations fail quietly. A pipeline that reports "success" while silently dropping 10% of business logic is worse than no pipeline — it shifts failure from <em>detectable</em> (compile error) to <em>undetectable</em> (wrong number in a ledger). I refused to ship that. The Streamlit console makes migration state inspectable at every layer:</p>
+
+  <ul class="tight">
+    <li><strong>Trigger coverage matrix</strong> — per-form breakdown by trigger type (PRE-INSERT, POST-QUERY, WHEN-VALIDATE-ITEM, 40+ categories) with drill-down to generated Java</li>
+    <li><strong>Capability registry</strong> — machine-readable contract of what the pipeline <em>claims</em> vs. what it <em>actually encounters</em>. Gap analysis runs this delta on every execution</li>
+    <li><strong>Auto-fix ledger</strong> — which of the 12 deterministic fixes fired, where, and why. No silent rewrites</li>
+    <li><strong>Compile-gate status</strong> — Maven pass/fail per form, error provenance traced back to originating trigger</li>
+  </ul>
+
+  <div class="highlight-line">
+    CTOs don't buy <em>"trust the model."</em> They buy <strong>"show me what it did and why."</strong>
+  </div>
+
+  <h2>The Innovation · Autonomous Mirror Testing Framework</h2>
+  <p>Compilation proves code builds. It does <em>not</em> prove the migrated form behaves identically to the original. With 4,000 forms and decades of undocumented business rules, manual regression testing is mathematically impossible. Writing Selenium scripts for each form is a second migration project.</p>
+  <p>I designed and built a different approach: <strong>use the Claude Computer Use API to autonomously operate the legacy Oracle Forms thick client</strong>, execute business scenarios, and compare against the same scenarios on the migrated JSF web app via Playwright — both runs snapshotting the database before &amp; after. The framework is operational; running it at scale awaits client-supplied test scenarios.</p>
+
+  <div class="mirror-diagram">
+    <div class="mirror-flow">
+      <div class="mirror-node legacy">
+        <div class="title">Legacy Oracle Forms</div>
+        <div class="agent">Claude Computer Use Agent</div>
+      </div>
+      <div class="mirror-arrow">⇌</div>
+      <div class="mirror-node modern">
+        <div class="title">Migrated JSF / PrimeFaces</div>
+        <div class="agent">Playwright Runner</div>
+      </div>
     </div>
+    <div class="mirror-bottom">
+      DB snapshot comparator · semantic diff · <strong>regression report per scenario</strong>
+    </div>
+  </div>
 
-    <h2>Governance Through Observability</h2>
-    <p>Enterprise migrations fail quietly. A pipeline that reports "success" while silently dropping 10% of business logic is worse than no pipeline — it shifts failure from <em>detectable</em> (compile error) to <em>undetectable</em> (wrong number in a ledger). I refused to ship that. The Streamlit console makes migration state inspectable at every layer:</p>
-
+  <h2>What This Project Demonstrates</h2>
+  <div class="two-col">
     <ul class="tight">
-      <li><strong>Trigger coverage matrix</strong> — per-form breakdown by trigger type (PRE-INSERT, POST-QUERY, WHEN-VALIDATE-ITEM, 40+ categories) with drill-down to generated Java</li>
-      <li><strong>Capability registry</strong> — machine-readable contract of what the pipeline <em>claims</em> vs. what it <em>actually encounters</em>. Gap analysis runs this delta on every execution</li>
-      <li><strong>Auto-fix ledger</strong> — which of the 12 deterministic fixes fired, where, and why. No silent rewrites</li>
-      <li><strong>Compile-gate status</strong> — Maven pass/fail per form, error provenance traced back to originating trigger</li>
+      <li><strong>Systems thinking over prompt engineering.</strong> The value is in the boundary between deterministic and probabilistic layers</li>
+      <li><strong>AI governance built in, not bolted on.</strong> Every decision logged, every auto-fix auditable, every gap measured</li>
     </ul>
-
-    <div class="highlight-line">
-      CTOs don't buy <em>"trust the model."</em> They buy <strong>"show me what it did and why."</strong>
-    </div>
+    <ul class="tight">
+      <li><strong>Zero-regression verification framework.</strong> Novel application of Computer Use for legacy regression — designed, built, awaiting scenarios</li>
+      <li><strong>Honest engineering.</strong> The pipeline reports what it <em>doesn't</em> know. The capability registry bounds the unknown</li>
+    </ul>
   </div>
 
-  <div class="page-footer">
-    <span class="author">David Starina · Independent Principal AI &amp; Solutions Architect · s.p.</span>
-    <span class="contact">david@starina.si</span>
-  </div>
-</div>
-
-<!-- ==================== SHEET 7 — Mirror Testing + Closing ==================== -->
-<div class="page">
-  <div class="page-header">
-    <div class="brand">
-      <span class="dot"></span>
-      <span>Zero-Regression Testing · Closing</span>
-    </div>
-    <div class="page-num">07 / 07</div>
-  </div>
-
-  <div class="page-content">
-    <h2>The Innovation · Autonomous Mirror Testing Framework</h2>
-    <p>Compilation proves code builds. It does <em>not</em> prove the migrated form behaves identically to the original. With 4,000 forms and decades of undocumented business rules, manual regression testing is mathematically impossible. Writing Selenium scripts for each form is a second migration project.</p>
-    <p>I designed and built a different approach: <strong>use the Claude Computer Use API to autonomously operate the legacy Oracle Forms thick client</strong>, execute business scenarios, and compare against the same scenarios on the migrated JSF web app via Playwright — both runs snapshotting the database before &amp; after. The framework is operational; running it at scale awaits client-supplied test scenarios.</p>
-
-    <div class="mirror-diagram">
-      <div class="mirror-flow">
-        <div class="mirror-node legacy">
-          <div class="title">Legacy Oracle Forms</div>
-          <div class="agent">Claude Computer Use Agent</div>
-        </div>
-        <div class="mirror-arrow">⇌</div>
-        <div class="mirror-node modern">
-          <div class="title">Migrated JSF / PrimeFaces</div>
-          <div class="agent">Playwright Runner</div>
-        </div>
-      </div>
-      <div class="mirror-bottom">
-        DB snapshot comparator · semantic diff · <strong>regression report per scenario</strong>
-      </div>
-    </div>
-
-    <h2>What This Project Demonstrates</h2>
-    <div class="two-col">
-      <ul class="tight">
-        <li><strong>Systems thinking over prompt engineering.</strong> The value is in the boundary between deterministic and probabilistic layers</li>
-        <li><strong>AI governance built in, not bolted on.</strong> Every decision logged, every auto-fix auditable, every gap measured</li>
-      </ul>
-      <ul class="tight">
-        <li><strong>Zero-regression verification framework.</strong> Novel application of Computer Use for legacy regression — designed, built, awaiting scenarios</li>
-        <li><strong>Honest engineering.</strong> The pipeline reports what it <em>doesn't</em> know. The capability registry bounds the unknown</li>
-      </ul>
-    </div>
-
-    <div class="signature-block">
-      <div class="signature-name">David Starina</div>
-      <div class="signature-role">Independent Principal AI &amp; Solutions Architect · Fractional Lead</div>
-      <div class="signature-contact">
-        david@starina.si · +386 51 283 984<br>
-        Available for fractional Lead / Principal AI Architect engagements
-      </div>
+  <div class="signature-block">
+    <div class="signature-name">David Starina</div>
+    <div class="signature-role">Independent Principal AI &amp; Solutions Architect · Fractional Lead</div>
+    <div class="signature-contact">
+      david@starina.si · +386 51 283 984<br>
+      Available for fractional Lead / Principal AI Architect engagements
     </div>
   </div>
 
